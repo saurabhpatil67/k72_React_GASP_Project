@@ -1,9 +1,17 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
+import Agence from './pages/Agence'
 
 const App = () => {
   return (
     <div>
-      <h1>saurabh</h1>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/agency' element={<Agence />} />
+        <Route path='/projects' element={<Projects />} />
+      </Routes>
     </div>
   )
 }

@@ -23,25 +23,45 @@ const Agence = () => {
     'https://k72.ca/images/teamMembers/PLP2_640x960.jpg?w=640&h=960&s=277b83adbf80a1c60a1c7ee72dfdf5cf',
   ]
 
+  React.useEffect(() => {
+    imageArray.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   useGSAP(function () {
     gsap.to(imageDivRef.current, {
       scrollTrigger: {
         trigger: imageDivRef.current,
-        markers: true,
-        start: 'top 22%',
-        end: 'top -190%',
+        // markers: true,
+        start: 'top 19%',
+        end: 'top -180%',
         pin: true,
-        scrub: true,
+        pinSpacing: true,
+        pinReparent: true,
+        pinType: 'transform',
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
 
         onUpdate: function (elem) {
           let imageIndex;
+          let lastIndex = -1;
           if (elem.progress < 1) {
             imageIndex = Math.floor(elem.progress * imageArray.length);
+           
           } else {
             imageIndex = imageArray.length - 1;
           }
 
-          imageRef.current.src = imageArray[imageIndex];
+          if (imageIndex !== lastIndex) {
+            imageRef.current.src = imageArray[imageIndex];
+            lastIndex = imageIndex;
+          }
+          // imageRef.current.src = imageArray[imageIndex];
+
+
         }
       }
     })
@@ -49,9 +69,9 @@ const Agence = () => {
 
   return (
     <div>
-      <div className='section1'>
-        <div ref={imageDivRef} className='absolute h-[20vw] w-[15vw] overflow-hidden bg-cyan-400 top-35 left-[30vw] rounded-3xl'>
-          <img ref={imageRef} className='rounded-3xl object-cover h-full w-full ' src="https://k72.ca/images/teamMembers/Carl_480x640.jpg?w=480&h=640&fit=crop&s=f0a84706bc91a6f505e8ad35f520f0b7" alt="person1" />
+      <div className='section1 py-1'>
+        <div ref={imageDivRef} className='absolute h-[20vw] w-[15vw] overflow-hidden top-48 left-[30vw] rounded-3xl'>
+          <img ref={imageRef} className='rounded-3xl object-cover h-full w-full ' src="https://k72.ca/images/teamMembers/Carl_480x640.jpg?w=480&h=640&fit=crop&s=f0a84706bc91a6f505e8ad35f520f0b7" alt="p1" />
         </div>
 
         <div className='relative font-[font2]'>

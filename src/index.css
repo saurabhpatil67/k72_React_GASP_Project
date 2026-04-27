@@ -11,3 +11,34 @@
 body{
     overflow-x: hidden;
 }
+
+/* menu page animation  */
+.moveX{
+    animation-name: moveAnimation;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes moveAnimation{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.moveLink{
+    opacity: 0;
+    transition: all ease 0.5s;
+}
+
+.link:hover .moveLink{
+    opacity: 1;
+}
+
+
+.cross:hover .cross-bg{
+    background-color: #d3fd50;
+    transition: all ease 0.5s;
+}
